@@ -1,4 +1,8 @@
+import os
 from flask import Flask
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -8,4 +12,5 @@ def hello_world():
 
 @app.route('/greeting')
 def hello_greeting():
-    return "hello Harsh!"
+    name = os.getenv("GREETING_MSG_NAME", "World")
+    return f"hello {name}!"
